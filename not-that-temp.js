@@ -11,9 +11,7 @@ var geoUrlKey = "&key=AIzaSyBsypIZxNiVwHxwMOAWg8bEKGQ0WWlJxLQ";
 var darkSkyUrl0 = "https://api.darksky.net/forecast/94793929846040309f42120ea5e27d80/";
 $(document).ready(function(){
   console.log("start");
-  });
-
- $("#search").on("click", function(){
+  $("#search").on("click", function(){
    geoUrlAddress = document.getElementById("basicSearchTf").value;
    geoUrlCountry = document.getElementById("countrySearchTf").value;
    $.getJSON(makeGeoUrl(geoUrlAddress,geoUrlCountry),function(geo){
@@ -24,6 +22,12 @@ $(document).ready(function(){
 darkSky(lat,long);
     });
  });
+  $("#newTemp").on("click",function(){
+  newTemp();
+});
+  });
+
+ 
 
 function darkSky(lat,long){
   $.ajax(
@@ -47,9 +51,7 @@ function darkSky(lat,long){
    });
 };
 
-$("#newTemp").on("click",function(){
-  newTemp();
-});
+
 
 function celsius(fahrenheit){
   return ((fahrenheit-32)/1.8).toFixed(0)+String.fromCharCode(176)+"C";
