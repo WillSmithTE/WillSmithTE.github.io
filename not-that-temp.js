@@ -1,4 +1,3 @@
-jQuery.each(arr, function(i) { console.log(i); }); 
 var temp;
 var place;
 var arr=[];
