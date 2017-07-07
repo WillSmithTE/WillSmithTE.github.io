@@ -18,7 +18,7 @@ $(document).ready(function(){
       lat=geo.results[0].geometry.location.lat;
       long=geo.results[0].geometry.location.lng;
   place = geo.results[0].address_components[0].long_name;
-     if (geo.results[0].address_components.length>1) place+=", " + geo.results[0].address_components[geo.results[0].address_components.length-1].long_name;
+     if (geo.results[0].address_components.length>1) place+=", " + geo.results[0].address_components[findCountry(geo.results[0].address_components)].long_name;
 darkSky(lat,long);
     });
  });
@@ -94,5 +94,12 @@ function newTemp(){
     else s+= " attempts remaining.";
 arr.shift();
 $("#insert").text(s);
+  }
+};
+
+function findCountry(arr){
+  for (var i=0;i<arr.length;i++){
+    if (arr[i].types[0]=="country")
+      return i;
   }
 };
