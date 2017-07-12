@@ -81,6 +81,7 @@ function newArr(arr,temp){
   arr.length=0;
    for (var i=temp-10;i<=temp+10;i++){
     arr.push(i);
+       console.log("i:"+i);
 }
   return arr;
 };
