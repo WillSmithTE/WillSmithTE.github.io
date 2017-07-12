@@ -89,7 +89,7 @@ function newTemp(){
   $("#insert").text("You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is "+celsius(temp)+".");
   }
   else{
-    var s = "The temperature in "+place + " is NOT " + celsius(arr[0])+". "+arr.length;
+    var s = "The temperature in "+place + " is NOT " + arr[0].toFixed(0)+String.fromCharCode(176)+"C. "+arr.length;
  if (arr.length==1) s+= " attempt remaining.";
     else s+= " attempts remaining.";
 arr.shift();
