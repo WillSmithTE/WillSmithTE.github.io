@@ -39,6 +39,7 @@ function darkSky(lat,long){
       success: function (data){
   temp = data.currently.temperature;
   arr=newArr(arr,celsius(temp));
+          console.log(arr);
   var index = arr.indexOf(temp);
   arr.splice(index,1);
   arr=shuffleArr(arr);
