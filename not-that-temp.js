@@ -38,7 +38,7 @@ function darkSky(lat,long){
       dataType: 'jsonp',
       success: function (data){
   temp = data.currently.temperature;
-  arr=newArr(arr,celsius(temp));
+  arr=newArr(arr,(temp-32)/1.8);
           console.log(arr);
   var index = arr.indexOf(temp);
   arr.splice(index,1);
