@@ -1,7 +1,9 @@
 var temp;
 var place;
 var arr=[];
-arr = newArr(arr);
+for (var i=-55;i<=55;i++){
+    arr.push(i);
+}
 var lat;
 var long;
 var geoUrl0 = "https://maps.googleapis.com/maps/api/geocode/json?address=";  
@@ -36,9 +38,8 @@ function darkSky(lat,long){
       dataType: 'jsonp',
       success: function (data){
   temp = data.currently.temperature;
-  arr=newArr(arr);
+  arr=newArr(arr,celsius(temp));
   var index = arr.indexOf(temp);
-        console.log(arr.length);
   arr.splice(index,1);
   arr=shuffleArr(arr);
         console.log(arr.length);
@@ -75,10 +76,9 @@ function shuffleArr(array){
     return array;
 };
 
-function newArr(arr){
+function newArr(arr,temp){
   arr.length=0;
-  console.log("newArr()");
-   for (var i=-55;i<=55;i++){
+   for (var i=temp-10;i<=temp+10;i++){
     arr.push(i);
 }
   return arr;
@@ -86,7 +86,7 @@ function newArr(arr){
 
 function newTemp(){
   if (arr.length==0){
-  $("#insert").text("You just consumed 0.00055% of your mouse's life and burnt 156.2 calories. Keep hustling. The temperature in " + place + " is "+celsius(temp)+".");
+  $("#insert").text("You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is "+celsius(temp)+".");
   }
   else{
     var s = "The temperature in "+place + " is NOT " + celsius(arr[0])+". "+arr.length;
