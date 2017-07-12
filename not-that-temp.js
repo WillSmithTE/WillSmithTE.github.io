@@ -37,13 +37,11 @@ function darkSky(lat,long){
       url: darkSkyUrl0+lat+","+long,
       dataType: 'jsonp',
       success: function (data){
-  temp = data.currently.temperature;
-  arr=newArr(arr,(temp-32)/1.8);
-          console.log(arr);
+  temp = (data.currently.temperature-32)/1.8;
+  arr=newArr(arr,temp);    
   var index = arr.indexOf(temp);
   arr.splice(index,1);
   arr=shuffleArr(arr);
-        console.log(arr.length);
   newTemp();
   document.getElementById("insert").style.visibility = "visible";
     },
