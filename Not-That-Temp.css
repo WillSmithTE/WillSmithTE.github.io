@@ -1,13 +1,87 @@
 h1{
   text-align:center;
+  color: black;
 }
 h2{
   text-align:center;
 }
-.bars{
-  display:table;
+form{
   margin:0 auto;
+  width:456px;
+}
+input, label {
+    display:block;
+}
+label{
+  margin-top:-10px;
+  margin-bottom:3px;
+  font-weight:bold;
+  color:RGB(48,55,63);
+}
+input[type='text']{
+  width:200px;
+  padding:6px;
+  color:RGB(48,55,63);
+  background-color:RGB(214,214,214);
+  border:none;
+  font-size:30px;
+  border-top:solid 3px;
+  border-bottom:solid 3px;
 }
 h3{
   text-align:center;
+}
+body{
+  background-color:RGB(214,214,214);
+}
+
+.season{
+  height:300px;
+  width:24%;
+}
+.image{
+  margin-top:20px;
+  margin-left: 2%;
+}
+#flag{
+  width:25%;
+  margin-left:37.5%;
+  margin-top:10px;
+}
+.buttons{
+  margin:0 auto;
+  width:430px;
+}
+Button{
+  margin-top:10px;
+  margin-right:10px;
+  line-height:5px;
+	width:200px;
+  height:40px;
+	color:#FFF;
+	border-radius:5px;
+	border:solid 1px RGB(180,188,197);
+	background:RGB(85,97,111);
+	text-align:center;
+  font-size:20px;
+	-webkit-box-shadow: 0px 9px 0px RGB(48,55,63);
+  -moz-box-shadow: 0px 9px 0px RGB(48,55,63);
+  box-shadow: 0px 9px 0px RGB(48,55,63);
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:RGB(106,121,138);
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:RGB(106,121,138);
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:RGB(106,121,138);
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:RGB(106,121,138);
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:RGB(106,121,138);
 }
