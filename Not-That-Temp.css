@@ -85,3 +85,10 @@ Button{
 ::-ms-input-placeholder { /* Microsoft Edge */
     color:RGB(106,121,138);
 }
+p1 {
+    text-align: center;
+  display:block;
+  padding:10px;
+  font-weight:bold;
+  color:RGB(48,55,63)
+}
