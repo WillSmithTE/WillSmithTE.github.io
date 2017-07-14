@@ -7,15 +7,32 @@
 <h1>Love knowing the temperature outside? Hate getting that information instantly? Try Not-That-Temp now!</h1>
 <h2>In the first search bar enter your postcode, suburb, town, city or country. Optionally, also specify your country in the second search bar. To find out what the temperature isn't in that location, hit 'Search'; if that's not enough for you, keep hitting 'New Temp' to get more and more temperatures which do not describe the current climate in the chosen location.  Next hit 'New Temp' to get another figure which is not the temperature at that location. Who thought getting the weather could be so fun?!</h2>
 <br>
-<div class="bars">
-<input type="text" id="basicSearchTf" placeholder="Eg. Tokyo"/>
-<input type="text" id="countrySearchTf" placeholder="Eg. Japan"
+<form>
+  <div style="float:left;margin-right:20px;">
+  <label for="basicSearchTf" class="placeLbl">Place</label>
+  <input type="text" id="basicSearchTf" placeholder="Tokyo"/>
+  </div>
+  <div style="float:left;">
+  <label for="countrySearchTf">Country</label>
 
-<div><Button id="search">Search</Button>
+<input name="countrySearchTf" type="text" id="countrySearchTf" placeholder="Japan"/>
+    </div>
+</form>
+
+<div class="buttons">
+  <Button id="search">Search</Button>
 <Button id="newTemp">New Temp</Button>
 </div>
-  <br/>
-<div>
-<h3 style="visibility:hidden" id="insert">insert here</h3>
+  <br>
+<h3 style="visibility:hidden" id="insert">"The temperature in Area 52 is NOT 56C. 0 attempts remaining."</h3>
 </div>
+</div>
+<div>
+  <img id="flag" src="https://s23.postimg.org/y7u6z03d7/grey.png">
+</div>
+<div class="image">
+  <img alt="summer" class="season" src="https://static.pexels.com/photos/20974/pexels-photo.jpg">
+  <img alt="autumn" class="season" src="https://i.ytimg.com/vi/Qvyrsw2yY40/maxresdefault.jpg">
+  <img alt="winter" class="season" src="https://sweden.nordicvisitor.com/images/1/sweden/lapland-winter-sweden.jpg">
+  <img alt="spring" class="season" src="https://www.touritalynow.com/wp-content/uploads/2015/03/Florence-Duomo-And-Giotto-Campanile.jpg">
 </div>
