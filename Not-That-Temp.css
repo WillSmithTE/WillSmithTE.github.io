@@ -68,6 +68,9 @@ Button{
   -moz-box-shadow: 0px 9px 0px RGB(48,55,63);
   box-shadow: 0px 9px 0px RGB(48,55,63);
 }
+Button:hover{
+background-color:RGB(111,104,107);
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:RGB(106,121,138);
 }
@@ -85,10 +88,16 @@ Button{
 ::-ms-input-placeholder { /* Microsoft Edge */
     color:RGB(106,121,138);
 }
-p1 {
-    text-align: center;
-  display:block;
-  padding:10px;
+
+.bottomStrip{
+  text-align:center;
+  position:relative;
+  padding:15px;
   font-weight:bold;
-  color:RGB(48,55,63)
+  color:RGB(48,55,63);
+  width:95%;
 }
+.darkSkyPower{
+  position:absolute; right:0;
+}
+
