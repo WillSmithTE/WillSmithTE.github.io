@@ -28,6 +28,9 @@ input[type='text']{
   border-top:solid 3px;
   border-bottom:solid 3px;
 }
+*:focus{
+    outline: none;
+}
 h3{
   text-align:center;
 }
