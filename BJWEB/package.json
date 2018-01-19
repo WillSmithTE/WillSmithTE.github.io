@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.13",
+    "angular-cli": "^1.0.0-beta.28.3",
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {
+    "localhost": "^0.2.3"
+  }
+}
