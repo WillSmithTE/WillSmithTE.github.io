@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="bower_components/tv4/tv4.js"></script>
-    <script type="text/javascript" src="bower_components/objectpath/lib/ObjectPath.js"></script>
-    <script type="text/javascript" src="bower_components/angular-schema-form/dist/schema-form.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
+    <base href="/">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="BJWEB/main.css">
+    <link rel="stylesheet" href="BJWeb/css/main.css">
+    <link href="css/bootstrap-formhelpers.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> "
-    <script src="BJWEB/ang.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script src="BJWeb/ang.js"></script>
+    <script src="bootstrap-formhelpers.js"></script>
+    <title>BlackDoge</title>
 </head>
+
 
 <body ng-app="app">
     <nav class="navbar navbar-inverse">
@@ -50,5 +50,4 @@
         <div ui-view></div>
     </div>
 </body>
-
 </html>
