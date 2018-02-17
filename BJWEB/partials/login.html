@@ -1,0 +1,12 @@
+<!doctype html>
+<head><title>Login</title></head>
+<form name="loginForm" submit="login()" type="form">
+    <label for="username">Username</label>
+    <input type="text" ng-model="user.username" id="username" required/>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required ng-model="user.password" />
+    <div class="buttons">
+        <input type="submit">
+        <button ui-sref="register">Register</button>
+    </div>
+</form>
