@@ -291,7 +291,7 @@ function getCountryCode(countryName){
     case 'Qatar': return 'QA';
     case 'Reunion': return 'RE';
     case 'Romania': return 'RO';
-    case 'Russian Federation': return 'RU';
+    case 'Russian': return 'RU';
     case 'Rwanda': return 'RW';
     case 'Saint Barthelemy': return 'BL';
     case 'Saint Helena': return 'SH';
