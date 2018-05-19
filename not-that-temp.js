@@ -1,126 +1,160 @@
-var countryCode="au";
+var countryCode = "au";
 var temp;
 var place;
-var arr=[];
-for (var i=-55;i<=55;i++){
-    arr.push(i);
+var arr = [];
+for (var i = -55; i <= 55; i++) {
+  arr.push(i);
 }
 var lat;
 var long;
-var geoUrl0 = "https://maps.googleapis.com/maps/api/geocode/json?address=";  
+var geoUrl0 = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 var geoUrlAddress = "sydney";
 var geoUrlCountry;
 var geoUrlKey = "&key=AIzaSyBsypIZxNiVwHxwMOAWg8bEKGQ0WWlJxLQ";
 var darkSkyUrl0 = "https://api.darksky.net/forecast/94793929846040309f42120ea5e27d80/";
-$(document).ready(function(){
-  console.log("start");
-  $("#search").on("click", function(){
-   geoUrlAddress = document.getElementById("basicSearchTf").value;
-   geoUrlCountry = document.getElementById("countrySearchTf").value;
-   $.getJSON(makeGeoUrl(geoUrlAddress,geoUrlCountry),function(geo){
-      lat=geo.results[0].geometry.location.lat;
-      long=geo.results[0].geometry.location.lng;
-  place = geo.results[0].address_components[0].long_name;
-     if (geo.results[0].address_components.length>1) place+=", " + geo.results[0].address_components[findCountry(geo.results[0].address_components)].long_name;
-  countryCode = getCountryCode(geo.results[0].address_components[findCountry(geo.results[0].address_components)].long_name).toLowerCase();
-$("#flag").attr('src',"http://www.geonames.org/flags/x/" + countryCode + ".gif");
-document.getElementById("flag").style.visibility = "visible";
-       darkSky(lat,long);
-    });
- });
-  $("#newTemp").on("click",function(){
-  newTemp();
-});
+var willSmithHeadshotLink = "https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_hero/s3/article/thumbnail/fresh-prince.jpeg?itok=7w5MJwV9";
+var dogeHeadshotLink = "http://elohell.net/public/comments/original/d0eed94aa03b609a9387fc30406da59e.jpg";
+var WILL_SMITH_KEYWORD = 'willsmith'
+var DOGE_KEYWORD = 'doge';
+var eggs = [{ keyword: WILL_SMITH_KEYWORD, link: willSmithHeadshotLink }, { keyword: DOGE_KEYWORD, link: dogeHeadshotLink }];
+
+
+$(document).ready(function () {
+  $("#search").on("click", function () {
+    geoUrlAddress = document.getElementById("basicSearchTf").value;
+    geoUrlCountry = document.getElementById("countrySearchTf").value;
+    var egg = getEgg([geoUrlAddress, geoUrlCountry]);
+    if (egg !== undefined) {
+      $("#flag").attr('src', egg.link);
+    } else {
+      $.getJSON(makeGeoUrl(geoUrlAddress, geoUrlCountry), (geo) => {
+        lat = geo.results[0].geometry.location.lat;
+        long = geo.results[0].geometry.location.lng;
+        place = geo.results[0].address_components[0].long_name;
+        var countryName = getCountryName(geo.results[0].address_components);
+        if (geo.results[0].address_components.length > 1) {
+          place += ", " + countryName;
+        }
+        var countryCode = getCountryCode(countryName);
+        var flagImgAddress;
+        if (countryCode !== undefined) {
+          countryCode = countryCode.toLowerCase();
+          flagImgAddress = "http://www.geonames.org/flags/x/" + countryCode + ".gif";
+        } else {
+          flagImgAddress = "https://ih1.redbubble.net/image.490996881.2348/flat,800x800,070,f.u2.jpg";
+          console.error('Country Code for flag of country name ', countryName, ' not found');
+        }
+        $("#flag").attr('src', flagImgAddress);
+        document.getElementById("flag").style.visibility = "visible";
+
+        darkSky(lat, long);
+      });
+    }
   });
+  $("#newTemp").on("click", function () {
+    newTemp();
+  });
+});
 
- 
 
-function darkSky(lat,long){
+
+function darkSky(lat, long) {
   $.ajax(
-      {type: "GET",
-      url: darkSkyUrl0+lat+","+long,
+    {
+      type: "GET",
+      url: darkSkyUrl0 + lat + "," + long,
       dataType: 'jsonp',
-      success: function (data){
-  temp = (data.currently.temperature-32)/1.8;
-  arr=newArr(arr,temp);    
-  var index = arr.indexOf(temp);
-  arr.splice(index,1);
-  arr=shuffleArr(arr);
-  newTemp();
-  document.getElementById("insert").style.visibility = "visible";
-    },
-      error: function(){
-        console.log("fail darkSky");
+      success: function (data) {
+        temp = (data.currently.temperature - 32) / 1.8;
+        arr = newArr(arr, temp);
+        var index = arr.indexOf(temp);
+        arr.splice(index, 1);
+        arr = shuffleArr(arr);
+        newTemp();
+        document.getElementById("insert").style.visibility = "visible";
+      },
+      error: function () {
+        console.error("Failed to fetch weather.");
       }
-   });
+    });
 };
 
 
 
-function celsius(fahrenheit){
-  return ((fahrenheit-32)/1.8).toFixed(0)+String.fromCharCode(176)+"C";
+function celsius(fahrenheit) {
+  return ((fahrenheit - 32) / 1.8).toFixed(0) + String.fromCharCode(176) + "C";
 };
 
-function makeGeoUrl(geoUrlAddress, geoUrlCountry){
-  if (!geoUrlCountry==""){
-    return geoUrl0+geoUrlAddress+"&components=country:"+geoUrlCountry;
+function makeGeoUrl(geoUrlAddress, geoUrlCountry) {
+  if (!geoUrlCountry == "") {
+    return geoUrl0 + geoUrlAddress + "&components=country:" + geoUrlCountry;
   }
   else
-  return geoUrl0 + geoUrlAddress + geoUrlKey;
+    return geoUrl0 + geoUrlAddress + geoUrlKey;
 };
 
-function shuffleArr(array){
+function shuffleArr(array) {
   for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
 };
 
-function newArr(arr,temp){
-  arr.length=0;
-   for (var i=temp-10;i<=temp+10;i++){
+function newArr(arr, temp) {
+  arr.length = 0;
+  for (var i = temp - 10; i <= temp + 10; i++) {
     arr.push(i);
-       console.log("i:"+i);
-}
+  }
   return arr;
 };
 
-function newTemp(){
-  if (arr.length==0){
-  $("#insert").text("You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is "+temp.toFixed(0)+String.fromCharCode(176)+"C.");
+function newTemp() {
+  if (arr.length == 0) {
+    $("#insert").text("You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is " + temp.toFixed(0) + String.fromCharCode(176) + "C.");
   }
-  else{
-    var s = "The temperature in "+place + " is NOT " + arr[0].toFixed(0)+String.fromCharCode(176)+"C. "+arr.length;
- if (arr.length==1) s+= " attempt remaining.";
-    else s+= " attempts remaining.";
-arr.shift();
-$("#insert").text(s);
+  else {
+    var s = "The temperature in " + place + " is NOT " + arr[0].toFixed(0) + String.fromCharCode(176) + "C. " + arr.length;
+    if (arr.length == 1) s += " attempt remaining.";
+    else s += " attempts remaining.";
+    arr.shift();
+    $("#insert").text(s);
   }
 };
 
-function findCountry(arr){
-  for (var i=0;i<arr.length;i++){
-    if (arr[i].types[0]=="country")
-      return i;
+function getCountryName(arr) {
+  var country = arr.find((addressComponents) => addressComponents.types[0] === 'country');
+  if (country === undefined) {
+    console.error(`Unable to find country name for flag from address components ${arr}`);
+  } else {
+    return country.long_name;
   }
 };
-function getCountryCode(countryName){
-  switch (countryName){
-    case 'Afghanistan':return 'AF';
+
+function getEgg(queryParams) {
+  queryParams.findIndex((queryParam) => {
+    queryParam = queryParam.toLowerCase();
+    queryParam = queryParam.split(' ').join('');
+    return eggs.some((egg) => queryParam.includes(egg.keyword));
+  }) !== -1;
+}
+
+function getCountryCode(countryName) {
+  switch (countryName) {
+    case 'Afghanistan': return 'AF';
     case 'Aland Islands': return 'AX';
     case 'Albania': return 'AL';
     case 'Algeria': return 'DZ';
     case 'American Samoa': return 'AS';
-    case 'Andorra':return 'AD';
+    case 'Andorra': return 'AD';
     case 'Angola': return 'AO';
     case 'Anguilla': return 'AI';
     case 'Antarctica': return 'AQ';
     case 'Antigua and Barbuda': return 'AG';
     case 'Argentina': return 'AR';
-    case 'Armenia': return 'AM';               
+    case 'Armenia': return 'AM';
     case 'Aruba': return 'AW';
     case 'Australia': return 'AU';
     case 'Austria': return 'AT';
@@ -131,13 +165,13 @@ function getCountryCode(countryName){
     case 'Barbados': return 'BB';
     case 'Belarus': return 'BY';
     case 'Belgium': return 'BE';
-    case'Belize': return  'BZ';
-    case 'Benin':return 'BJ';
+    case 'Belize': return 'BZ';
+    case 'Benin': return 'BJ';
     case 'Bermuda': return 'BM';
     case 'Bhutan': return 'BT';
     case 'Bolivia': return 'BO';
     case 'Bosnia and Herzegovina': return 'BA';
-    case 'Botswana':return 'BW';
+    case 'Botswana': return 'BW';
     case 'Bouvet Island (Bouvetoya)': return 'BV';
     case 'Brazil': return 'BR';
     case 'British Indian Ocean Territory (Chagos Archipelago)': return 'IO';
@@ -146,8 +180,8 @@ function getCountryCode(countryName){
     case 'Bulgaria': return 'BG';
     case 'Burkina Faso': return 'BF';
     case 'Burundi': return 'BI';
-    case 'Cambodia': return 'KH'; 
-    case 'Cameroon': return  'CM';
+    case 'Cambodia': return 'KH';
+    case 'Cameroon': return 'CM';
     case 'Canada': return 'CA';
     case 'Cape Verde': return 'CV';
     case 'Cayman Islands': return 'KY';
@@ -248,7 +282,7 @@ function getCountryCode(countryName){
     case 'Malta': return 'MT';
     case 'Marshall Islands': return 'MH';
     case 'Martinique': return 'MQ';
-    case 'Mauritania': return  'MR';
+    case 'Mauritania': return 'MR';
     case 'Mauritius': return 'MU';
     case 'Mayotte': return 'YT';
     case 'Mexico': return 'MX';
@@ -291,7 +325,7 @@ function getCountryCode(countryName){
     case 'Qatar': return 'QA';
     case 'Reunion': return 'RE';
     case 'Romania': return 'RO';
-    case 'Russian': return 'RU';
+    case 'Russia': return 'RU';
     case 'Rwanda': return 'RW';
     case 'Saint Barthelemy': return 'BL';
     case 'Saint Helena': return 'SH';
@@ -355,6 +389,6 @@ function getCountryCode(countryName){
     case 'Yemen': return 'YE';
     case 'Zambia': return 'ZM';
     case 'Zimbabwe': return 'ZW';
-                     };
+  };
 };
 
