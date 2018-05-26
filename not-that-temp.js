@@ -2,21 +2,18 @@ var countryCode = "au";
 var temp;
 var place;
 var arr = [];
-for (var i = -55; i <= 55; i++) {
-  arr.push(i);
-}
 var lat;
 var long;
 var geoUrl0 = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 var geoUrlAddress = "sydney";
 var geoUrlCountry;
 var geoUrlKey = "&key=AIzaSyBsypIZxNiVwHxwMOAWg8bEKGQ0WWlJxLQ";
-var darkSkyUrl0 = "https://api.darksky.net/forecast/94793929846040309f42120ea5e27d80/";
-var willSmithHeadshotLink = "https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_hero/s3/article/thumbnail/fresh-prince.jpeg?itok=7w5MJwV9";
-var dogeHeadshotLink = "http://elohell.net/public/comments/original/d0eed94aa03b609a9387fc30406da59e.jpg";
+var DARK_SKY_PATH = "https://api.darksky.net/forecast/94793929846040309f42120ea5e27d80/";
+var WILL_SMITH_IMG_PATH = "https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_hero/s3/article/thumbnail/fresh-prince.jpeg?itok=7w5MJwV9";
+var DOGE_IMG_PATH = "http://elohell.net/public/comments/original/d0eed94aa03b609a9387fc30406da59e.jpg";
 var WILL_SMITH_KEYWORD = 'willsmith'
 var DOGE_KEYWORD = 'doge';
-var eggs = [{ keyword: WILL_SMITH_KEYWORD, link: willSmithHeadshotLink }, { keyword: DOGE_KEYWORD, link: dogeHeadshotLink }];
+var eggs = [{ keyword: WILL_SMITH_KEYWORD, link: WILL_SMITH_IMG_PATH }, { keyword: DOGE_KEYWORD, link: DOGE_IMG_PATH }];
 
 
 $(document).ready(function () {
@@ -62,7 +59,7 @@ function darkSky(lat, long) {
   $.ajax(
     {
       type: "GET",
-      url: darkSkyUrl0 + lat + "," + long,
+      url: DARK_SKY_PATH + lat + "," + long,
       dataType: 'jsonp',
       success: function (data) {
         temp = (data.currently.temperature - 32) / 1.8;
@@ -79,18 +76,12 @@ function darkSky(lat, long) {
     });
 };
 
-
-
-function celsius(fahrenheit) {
-  return ((fahrenheit - 32) / 1.8).toFixed(0) + String.fromCharCode(176) + "C";
-};
-
 function makeGeoUrl(geoUrlAddress, geoUrlCountry) {
-  if (!geoUrlCountry == "") {
+  if (geoUrlCountry === "") {
+    return geoUrl0 + geoUrlAddress + geoUrlKey;
+  } else {
     return geoUrl0 + geoUrlAddress + "&components=country:" + geoUrlCountry;
   }
-  else
-    return geoUrl0 + geoUrlAddress + geoUrlKey;
 };
 
 function shuffleArr(array) {
@@ -117,8 +108,11 @@ function newTemp() {
   }
   else {
     var s = "The temperature in " + place + " is NOT " + arr[0].toFixed(0) + String.fromCharCode(176) + "C. " + arr.length;
-    if (arr.length == 1) s += " attempt remaining.";
-    else s += " attempts remaining.";
+    if (arr.length == 1) {
+      s += " attempt remaining.";
+    } else {
+      s += " attempts remaining.";
+    }
     arr.shift();
     $("#insert").text(s);
   }
