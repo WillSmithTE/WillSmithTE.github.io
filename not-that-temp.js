@@ -24,6 +24,7 @@ $(document).ready(function () {
     var maybeEgg = findEgg([geoUrlAddress, geoUrlCountry]);
     if (maybeEgg !== undefined) {
       setFlagSrc(maybeEgg.path);
+      setFeedbackText(`spooky`)
     } else {
       $.getJSON(KEYS_PATH, (keys) => {
         DARK_SKY_PATH = keys.darkSkyPath;
