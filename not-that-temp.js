@@ -1,55 +1,65 @@
-var countryCode = "au";
-var temp;
+var countryCode = 'au';
+var actualTemp;
 var place;
-var arr = [];
+var wrongTemps = [];
 var lat;
 var long;
-var geoUrl0 = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-var geoUrlAddress = "sydney";
+var geoUrl0 = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+var geoUrlAddress = 'sydney';
 var geoUrlCountry;
 var geoUrlKey;
 var DARK_SKY_PATH;
-var WILL_SMITH_IMG_PATH = "https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_hero/s3/article/thumbnail/fresh-prince.jpeg?itok=7w5MJwV9";
-var DOGE_IMG_PATH = "http://elohell.net/public/comments/original/d0eed94aa03b609a9387fc30406da59e.jpg";
-var WILL_SMITH_KEYWORD = 'willsmith'
+var WILL_SMITH_IMG_PATH = 'https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_hero/s3/article/thumbnail/fresh-prince.jpeg?itok=7w5MJwV9';
+var DOGE_IMG_PATH = 'http://i.imgur.com/L2xK8JO.jpg';
+var WILL_SMITH_KEYWORD = 'willsmith';
 var DOGE_KEYWORD = 'doge';
-var eggs = [{ keyword: WILL_SMITH_KEYWORD, link: WILL_SMITH_IMG_PATH }, { keyword: DOGE_KEYWORD, link: DOGE_IMG_PATH }];
-var KEYS_PATH = "https://9wtfxgyexd.execute-api.ap-southeast-2.amazonaws.com/beta";
+var eggs = [{ keyword: WILL_SMITH_KEYWORD, path: WILL_SMITH_IMG_PATH }, { keyword: DOGE_KEYWORD, path: DOGE_IMG_PATH }];
+var KEYS_PATH = 'https://9wtfxgyexd.execute-api.ap-southeast-2.amazonaws.com/beta';
+var MR_SPONGE_PATH = 'https://ih1.redbubble.net/image.490996881.2348/flat,800x800,070,f.u2.jpg';
 
 $(document).ready(function () {
-  $("#search").on("click", function () {
-    geoUrlAddress = document.getElementById("basicSearchTf").value;
-    geoUrlCountry = document.getElementById("countrySearchTf").value;
-    var egg = getEgg([geoUrlAddress, geoUrlCountry]);
-    if (egg !== undefined) {
-      $("#flag").attr('src', egg.link);
+  $('#search').on('click', function () {
+    geoUrlAddress = document.getElementById('basicSearchTf').value;
+    geoUrlCountry = document.getElementById('countrySearchTf').value;
+    var maybeEgg = findEgg([geoUrlAddress, geoUrlCountry]);
+    if (maybeEgg !== undefined) {
+      setFlagSrc(maybeEgg.path);
     } else {
-      $.getJSON(KEYS_PATH).then((keys) => {
-        $.getJSON(makeGeoUrl(geoUrlAddress, geoUrlCountry), (geo) => {
-          DARK_SKY_PATH = keys.darkSkyPath;
-          geoUrlKey = keys.googleGeoKey;
-          lat = geo.results[0].geometry.location.lat;
-          long = geo.results[0].geometry.location.lng;
-          place = geo.results[0].address_components[0].long_name;
-          var countryName = getCountryName(geo.results[0].address_components);
-          if (geo.results[0].address_components.length > 1) {
-            place += ", " + countryName;
-          }
-          var countryCode = getCountryCode(countryName);
-          var flagImgAddress;
-          if (countryCode !== undefined) {
-            countryCode = countryCode.toLowerCase();
-            flagImgAddress = "http://www.geonames.org/flags/x/" + countryCode + ".gif";
+      $.getJSON(KEYS_PATH, (keys) => {
+        DARK_SKY_PATH = keys.darkSkyPath;
+        geoUrlKey = keys.googleGeoKey;
+      }).then(() => {
+        $.getJSON(makeGeoUrl(geoUrlAddress, geoUrlCountry), (weatherData) => {
+          if (weatherData.results.length == 0) {
+            setFeedbackText(`${geoUrlAddress} doesn't exist you absolute dummy keep trying`);
+            setFlagSrc(MR_SPONGE_PATH);
+            makeFeedbackVisible();
           } else {
-            flagImgAddress = "https://ih1.redbubble.net/image.490996881.2348/flat,800x800,070,f.u2.jpg";
-            console.error('Country Code for flag of country name ', countryName, ' not found');
-          }
-          $("#flag").attr('src', flagImgAddress);
-          document.getElementById("flag").style.visibility = "visible";
+            lat = weatherData.results[0].geometry.location.lat;
+            long = weatherData.results[0].geometry.location.lng;
+            place = weatherData.results[0].address_components[0].long_name;
+            var countryName = getCountryName(weatherData.results[0].address_components);
+            if (weatherData.results[0].address_components.length > 1) {
+              place += ", " + countryName;
+            }
+            var countryCode = getCountryCode(countryName);
+            var flagImgAddress;
+            if (countryCode !== undefined) {
+              countryCode = countryCode.toLowerCase();
+              flagImgAddress = "http://www.geonames.org/flags/x/" + countryCode + ".gif";
+            } else {
+              flagImgAddress = MR_SPONGE_PATH;
+              console.warn('Country Code for flag of country name ', countryName, ' not found');
+            }
+            setFlagSrc(flagImgAddress);
+            document.getElementById("flag").style.visibility = "visible";
 
-          darkSky(lat, long);
-        });
-      });
+            darkSky(lat, long);
+          }
+        },
+          (error) => console.warn(`Failed to get GEO weather info: ${error}`));
+      },
+        (error) => console.warn(`Failed to get api keys: ${error}`));
     }
   });
   $("#newTemp").on("click", function () {
@@ -57,7 +67,9 @@ $(document).ready(function () {
   });
 });
 
-
+function setFlagSrc(path) {
+  $("#flag").attr('src', path);
+}
 
 function darkSky(lat, long) {
   $.ajax(
@@ -66,19 +78,19 @@ function darkSky(lat, long) {
       url: DARK_SKY_PATH + lat + "," + long,
       dataType: 'jsonp',
       success: (data) => handleWeatherUpdate(data),
-      error: () => console.error("Failed to fetch weather.")
+      error: (error) => console.warn(`Failed to fetch weather: ${error}`)
     }
   );
 };
 
 function handleWeatherUpdate(data) {
-  temp = (data.currently.temperature - 32) / 1.8;
-  arr = newArr(arr, temp);
-  var index = arr.indexOf(temp);
-  arr.splice(index, 1);
-  arr = shuffleArr(arr);
+  actualTemp = (data.currently.temperature - 32) / 1.8;
+  wrongTemps = newArr(wrongTemps, actualTemp);
+  var index = wrongTemps.indexOf(actualTemp);
+  wrongTemps.splice(index, 1);
+  wrongTemps = shuffleArr(wrongTemps);
   newTemp();
-  document.getElementById("insert").style.visibility = "visible";
+  makeFeedbackVisible();
 }
 
 function makeGeoUrl(geoUrlAddress, geoUrlCountry) {
@@ -107,38 +119,48 @@ function newArr(arr, temp) {
   return arr;
 };
 
+function makeFeedbackVisible() {
+  document.getElementById("feedback").style.visibility = "visible";
+}
+
 function newTemp() {
   var s;
-  if (arr.length == 0) {
-    s = "You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is " + temp.toFixed(0) + String.fromCharCode(176) + "C.";
+  if (wrongTemps.length == 0) {
+    s = "You just consumed 0.00011% of your mouse's life and burnt 0.0031 calories. Keep hustling. The temperature in " + place + " is " + actualTemp.toFixed(0) + String.fromCharCode(176) + "C.";
   }
   else {
-    s = "The temperature in " + place + " is NOT " + arr[0].toFixed(0) + String.fromCharCode(176) + "C. " + arr.length;
-    if (arr.length == 1) {
+    s = "The temperature in " + place + " is NOT " + wrongTemps[0].toFixed(0) + String.fromCharCode(176) + "C. " + wrongTemps.length;
+    if (wrongTemps.length == 1) {
       s += " attempt remaining.";
     } else {
       s += " attempts remaining.";
     }
-    arr.shift();
+    wrongTemps.shift();
   }
-  $("#insert").text(s);
+  setFeedbackText(s);
 };
+
+function setFeedbackText(text) {
+  $("#feedback").text(text);
+}
 
 function getCountryName(arr) {
   var country = arr.find((addressComponents) => addressComponents.types[0] === 'country');
   if (country === undefined) {
-    console.error(`Unable to find country name for flag from address components ${arr}`);
+    console.warn(`Unable to find country name for flag from address components ${arr}`);
   } else {
     return country.long_name;
   }
 };
 
-function getEgg(queryParams) {
-  queryParams.findIndex((queryParam) => {
-    queryParam = queryParam.toLowerCase();
-    queryParam = queryParam.split(' ').join('');
-    return eggs.some((egg) => queryParam.includes(egg.keyword));
-  }) !== -1;
+function findEgg(queryParams) {
+  return eggs.find((egg) => {
+    return queryParams.map((queryParam) => {
+      var modifiedQueryParam = queryParam.toLowerCase();
+      modifiedQueryParam = modifiedQueryParam.split(' ').join('');
+      return modifiedQueryParam;
+    }).some((queryParam) => queryParam.includes(egg.keyword));
+  });
 }
 
 function getCountryCode(countryName) {
