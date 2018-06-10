@@ -89,6 +89,7 @@ background-color:RGB(111,104,107);
 .bottomStrip{
   text-align:center;
   position:fixed;
+  padding-top: 10px;
   bottom: 0px;
   font-weight:bold;
   color:RGB(48,55,63);
