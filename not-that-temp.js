@@ -117,6 +117,7 @@ function newArr(arr, temp) {
   for (var i = temp - 10; i <= temp + 10; i++) {
     arr.push(i);
   }
+  arr.splice(9, 1);
   return arr;
 };
 
