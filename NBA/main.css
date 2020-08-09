@@ -1,0 +1,18 @@
+#loading {
+    display: block;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+}
+
+.column {
+    width: 50%;
+}
+
+table, td, tr, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* padding: 2px; */
+}
