@@ -89,3 +89,27 @@ function formatName(name) {
         .map((split) => split.charAt(0).toUpperCase() + split.slice(1))
         .join(' ');
 }
+
+const FEEDBACK_FORM = "feedbackForm";
+
+function clickFeedbackButton() {
+    const item = document.getElementById(FEEDBACK_FORM);
+    if (item.style.display === 'none' || item.style.display === '') {
+        item.style.display = 'block';
+    } else {
+        item.style.display = 'none';
+    }
+}
+
+function submitFeedback() {
+    feedback = document.getElementById("feedbackText").value;
+    fetch(
+        `${HOST}/api/feedback`,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ feedback })
+        }
+    );
+    document.getElementById(FEEDBACK_FORM).style.display = 'none';
+}

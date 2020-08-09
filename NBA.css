@@ -16,3 +16,17 @@ table, td, tr, th {
     border-collapse: collapse;
     /* padding: 2px; */
 }
+
+.feedbackContainer {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#feedbackText {
+    display: block;
+}
+
+#feedbackForm {
+    display: none;
+}
