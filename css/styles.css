@@ -9951,9 +9951,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body,
-html {
-  width: 100%;
+body, html {
   height: 100%;
 }
 
