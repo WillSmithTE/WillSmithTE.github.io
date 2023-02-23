@@ -66,7 +66,11 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background: #E5E5E5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -376,7 +380,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 h4, .h4 {
@@ -542,13 +546,16 @@ pre code {
 }
 
 .container {
-  width: 100%;
+  width: 90%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  /* display: flex; */
+  /* align-items: center; */
+  height: 100%;
 }
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .container {
     max-width: 540px;
   }
@@ -567,17 +574,17 @@ pre code {
   .container {
     max-width: 1140px;
   }
-}
+} */
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
-  width: 100%;
+  width: 90%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
   }
@@ -596,7 +603,7 @@ pre code {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
-}
+} */
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -9980,7 +9987,8 @@ hr.light {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 1rem 0;
+  height: 100%;
 }
 
 #mainNav {
@@ -10015,14 +10023,14 @@ hr.light {
     /* color: rgba(255, 255, 255, 0.7); */
   }
   #mainNav .navbar-brand:hover {
-    color: #fff;
+    color: #f4623a;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
     /* color: rgba(255, 255, 255, 0.7); */
     padding: 0 1rem;
   }
   #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #fff;
+    color: #f4623a;
   }
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
     padding-right: 0;
@@ -10046,7 +10054,7 @@ hr.light {
 }
 
 header.masthead {
-  padding-top: 10rem;
+  padding-top: 2rem;
   padding-bottom: calc(10rem - 4.5rem);
   /* background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/willsmith.jpg"); */
   background: #E5E5E5;
@@ -10056,7 +10064,10 @@ header.masthead {
   background-size: cover;
 }
 header.masthead h1 {
-  font-size: 2.25rem;
+  font-size: 300%;
+}
+header.masthead h3 {
+  font-size: 200%;
 }
 @media (min-width: 992px) {
   header.masthead {
@@ -10136,11 +10147,17 @@ header.masthead h1 {
 
 
 #headshot {
-  width: 50%;
+  width: 60%;
+  /* box-shadow: 10px 10px 0px #000000;
+  border-radius: 10px; */
+  margin-bottom: 2rem;
 }
 
 #resume-button {
-  width: 60%;
+  width: 30%;
+  border: 2px solid #000000;
+  box-shadow: 10px 10px 0px #000000;
+  margin-bottom: 2rem;
 }
 
 .company-icon {
@@ -10161,4 +10178,41 @@ header.masthead h1 {
   font-weight: 300;
   opacity: 0.6;
   padding-bottom: 2rem;
+}
+
+#navbarResponsive {
+  max-width: 98%;
+}
+
+.project-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  width: 30%;
+  overflow: hidden;
+  box-shadow: 20px 20px 0px #000000;
+}
+.project-image {
+  width: 100%;
+}
+.project-summary h3 {
+  font-size: 1.5rem;
+  font-family: 'Cairo';
+  font-weight: 600;
+}
+.project-summary p {
+  font-size: .75rem;
+  font-family: 'Inter';
+  font-weight: 200;
+}
+
+.project-summary {
+  padding: 1rem;
+}
+.project-tech {
+  height: 3.5rem;
+}
+
+.my-shadow {
+  box-shadow: 10px 10px 0px #000000;
+  border-radius: 20px;
 }
