@@ -10210,6 +10210,13 @@ header.masthead h3 {
 }
 .project-tech {
   height: 3.5rem;
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.project-tech-item  {
+  height:  100%;
+  padding-right: 5px;
 }
 
 .my-shadow {
