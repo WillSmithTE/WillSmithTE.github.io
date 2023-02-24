@@ -7327,7 +7327,7 @@ button.bg-dark:focus {
 }
 
 .fixed-top {
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -9960,7 +9960,8 @@ h3 {
 body,
 html {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: fit-content; /* fit-content keeps sticky header at top */
 }
 
 hr.divider {
@@ -10003,9 +10004,9 @@ hr.light {
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #FFFFFF;
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-family: 'Inter';
+  font-weight: 300;
+  font-size: 1rem;
   padding: 0.75rem 0;
 }
 #mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
@@ -10054,6 +10055,7 @@ hr.light {
 }
 
 header.masthead {
+  height: 100vh;  /* for mobile makes full screen */
   padding-top: 2rem;
   padding-bottom: calc(10rem - 4.5rem);
   /* background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/willsmith.jpg"); */
@@ -10073,7 +10075,7 @@ header.masthead h3 {
   header.masthead {
     height: 100vh;
     min-height: 40rem;
-    padding-top: 4.5rem;
+    /* padding-top: 4.5rem; */
     padding-bottom: 0;
   }
   header.masthead p {
@@ -10147,7 +10149,7 @@ header.masthead h3 {
 
 
 #headshot {
-  width: 60%;
+  width: 65%;
   /* box-shadow: 10px 10px 0px #000000;
   border-radius: 10px; */
   margin-bottom: 2rem;
@@ -10187,12 +10189,16 @@ header.masthead h3 {
 .project-card {
   background: #FFFFFF;
   border-radius: 20px;
-  width: 30%;
   overflow: hidden;
   margin-bottom: 4rem;
 
   position: relative;
+}
+@media (min-width: 992px) {
+ .project-card {
+  width: 30%;
   box-shadow: 20px 20px 0px #000000;
+ }
 }
 
 .project-card-contents {
@@ -10254,7 +10260,7 @@ header.masthead h3 {
   font-weight: 600;
 }
 .project-summary p {
-  font-size: .75rem;
+  font-size: 14px;
   font-family: 'Inter';
   font-weight: 200;
 }
@@ -10263,7 +10269,7 @@ header.masthead h3 {
   padding: 1rem;
 }
 .project-tech {
-  height: 3.5rem;
+  height: 2.5rem;
   display: flex;
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -10271,12 +10277,21 @@ header.masthead h3 {
 }
 .project-tech-item  {
   height:  100%;
-  padding-right: 5px;
+  padding-right: 13px;
   margin-top: 5px;
   padding-bottom: 2px;
 }
 
-.my-shadow {
-  box-shadow: 10px 10px 0px #000000;
-  border-radius: 20px;
+.bottom-strip {
+  text-align: left;
+  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 2px;
+  bottom: 0px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  width: 100%;
+  font-family: 'Inter';
+  font-size: 14px;
 }
