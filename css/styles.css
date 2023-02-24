@@ -9988,7 +9988,7 @@ hr.light {
 
 .page-section {
   padding: 1rem 0;
-  height: 100%;
+  min-height: 100%;
 }
 
 #mainNav {
@@ -10189,8 +10189,62 @@ header.masthead h3 {
   border-radius: 20px;
   width: 30%;
   overflow: hidden;
+  margin-bottom: 4rem;
+
+  position: relative;
   box-shadow: 20px 20px 0px #000000;
 }
+
+.project-card-contents {
+  height: 100%;
+  width: 100%;
+}
+
+.project-card-contents:hover {
+    -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.project-card:hover .project-card-contents {
+  opacity: 0.3;
+  -webkit-filter:  blur(6x);
+  filter: blur(6px);
+
+}
+
+.project-card:hover .show-on-hover {
+  opacity: 1;
+}
+
+
+.show-on-hover {
+  opacity: 0;
+  /* opacity: 1; */
+  /* display: none; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+
+}
+
+.project-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: #000;
+}
+
 .project-image {
   width: 100%;
 }
@@ -10213,10 +10267,13 @@ header.masthead h3 {
   display: flex;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 .project-tech-item  {
   height:  100%;
   padding-right: 5px;
+  margin-top: 5px;
+  padding-bottom: 2px;
 }
 
 .my-shadow {
