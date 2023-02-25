@@ -1,2 +1,5 @@
 # maybe will smith text smaller
 # headshot left and down. space on far left and far right should match. can center vertically with text and stuff
+# on mobile, center tech logos and github/website buttons
+# mobile top thing, change to icons?
+# top thing disappears on scroll

@@ -7327,7 +7327,7 @@ button.bg-dark:focus {
 }
 
 .fixed-top {
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -10160,6 +10160,7 @@ header.masthead h3 {
   border: 2px solid #000000;
   box-shadow: 10px 10px 0px #000000;
   margin-bottom: 2rem;
+  min-width: 120px; /* for mobile */
 }
 
 .company-icon {
@@ -10193,62 +10194,14 @@ header.masthead h3 {
   margin-bottom: 4rem;
 
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 @media (min-width: 992px) {
  .project-card {
   width: 30%;
   box-shadow: 20px 20px 0px #000000;
  }
-}
-
-.project-card-contents {
-  height: 100%;
-  width: 100%;
-}
-
-.project-card-contents:hover {
-    -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
-}
-
-.project-card:hover .project-card-contents {
-  opacity: 0.3;
-  -webkit-filter:  blur(6x);
-  filter: blur(6px);
-
-}
-
-.project-card:hover .show-on-hover {
-  opacity: 1;
-}
-
-
-.show-on-hover {
-  opacity: 0;
-  /* opacity: 1; */
-  /* display: none; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
-
-}
-
-.project-button {
-  width: 100%;
-  margin-bottom: 1rem;
-  border: #000;
 }
 
 .project-image {
@@ -10267,6 +10220,9 @@ header.masthead h3 {
 
 .project-summary {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .project-tech {
   height: 2.5rem;
@@ -10282,8 +10238,38 @@ header.masthead h3 {
   padding-bottom: 2px;
 }
 
+.project-buttons {
+  border-radius: 10px;
+  display: flex;
+  padding-bottom: 4px;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.project-button {
+  width: 45%;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25)) drop-shadow(2px 5px 4px rgba(0, 0, 0, 0.35));
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-family: 'Hubballi';
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.project-button:active {
+  background: #DDDDDD;
+}
+
+@media (min-width: 992px) {
+  .project-buttons {
+    justify-content: space-between;
+  }
+ }
+
 .bottom-strip {
-  text-align: left;
+  text-align: center;
   padding: 15px;
   padding-top: 10px;
   padding-bottom: 2px;
