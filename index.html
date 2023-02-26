@@ -61,76 +61,172 @@
 </head>
 
 <body id="page-top">
-    <h1 style="padding-bottom: 50px;">Will Smith</h1>
-    <h3 style="padding-bottom: 10px;">Projects</h3>
-    <div class="project">
-        <a href="https://shred.willsmithte.com" target="_blank">Shred Crew</a>
-        <span> - React Native, React, Express, AWS Lambda, DynamoDB</span>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
+            <button
+                class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li> -->
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://willsmithte.com/resume"
+                            target="_blank">Resume</a></li>
+                </ul>
+            </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead" id="home">
+        <section class="page-section" id="about" style="display: flex; align-items: center;">
+            <div class="container h-100" >
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <img class="img-fluid" src="assets/img/headshot.png" alt="headshot" id="headshot" />
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <h1 class="header">Will Smith</h1>
+                        <h3 class="subheader">Full Stack Developer</h3>
+                            <a href="https://willsmithte.com/resume" target="_blank">
+                                <img class="img-fluid" src="assets/img/resume-button.png" alt="resume" id="resume-button" />
+                            </a>
+                            <div class="row justify-content-center">
+                                <a href="https://www.linkedin.com/in/willsmithte/" target="_blank">
+                                    <img class="img-fluid company-icon" src="assets/img/linkedin-logo.png" alt="linkedin" class="company-icon"/>
+                                </a>
+                                <a href="https://github.com/WillSmithTE" target="_blank">
+                                    <img class="img-fluid company-icon" src="assets/img/github-logo.png" alt="github" class="company-icon"/>
+                                </a>
+                                <a href="https://www.upwork.com/freelancers/~01ed9589ef2ffcd6fd" target="_blank">
+                                    <img class="img-fluid company-icon" src="assets/img/upwork-logo.png" alt="upwork"/>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- About section-->
+    <section class="page-section" id="projects">
+        <div class="container">
+            <div class="row justify-content-start" style="padding-bottom: 1rem;">
+                <h1 class="header">Projects</h1>
+            </div>
+            <div class="row justify-content-between">
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/shred-crew-project.png" alt="shred-crew-project" />
+                    <div class="project-summary">
+                        <h3>Shred Crew</h3>
+                        <p>Mobile app for meeting and communicating with other skiers on the mountain.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/react.png" alt="react" />
+                            <img class="project-tech-item" src="assets/img/project/react-native.png" alt="react-native" />
+                            <img class="project-tech-item" src="assets/img/project/aws-dynamodb.png" alt="dynamodb" />
+                            <img class="project-tech-item" src="assets/img/project/aws-lambda.png" alt="lambda" />
+                            <img class="project-tech-item" src="assets/img/project/node-js.png" alt="node.js" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/shred-crew" target="_blank">GitHub</a>
+                            <a class="project-button" href="https://shred.willsmithte.com/" target="_blank">Website</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/snow-tracker.png" alt="snow-tracker-project" />
+                    <div class="project-summary">
+                        <h3>Snow Tracker</h3>
+                        <p>Allows users to easily compare snowfall data from past years using interactive graphs.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/react.png" alt="react" />
+                            <img class="project-tech-item" src="assets/img/project/python.png" alt="python" />
+                            <img class="project-tech-item" src="assets/img/project/aws-dynamodb.png" alt="dynamodb" />
+                            <img class="project-tech-item" src="assets/img/project/aws-lambda.png" alt="lambda" />
+                            <img class="project-tech-item" src="assets/img/project/aws-cloudwatch.png" alt="cloudwatch" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/snow" target="_blank">GitHub</a>
+                            <a class="project-button" href="https://willsmithte.com/snow" target="_blank">Website</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/covid-vax.png" alt="covid vax project" />
+                    <div class="project-summary">
+                        <h3>COVID Vax</h3>
+                        <p>Website presenting easy-to-read visualisations comparing the COVID-19 vaccine take-up rates across different regions and demographics.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/go.png" alt="go" />
+                            <img class="project-tech-item" src="assets/img/project/react.png" alt="react" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/twitter/tree/main/src/vaccineDemographics" target="_blank">GitHub</a>
+                            <a class="project-button" href="https://willsmithte.com/covid-vax/" target="_blank">Website</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/thesis.png" alt="thesis project" />
+                    <div class="project-summary">
+                        <h3>University Thesis</h3>
+                        <p>Machine learning analysis and classification of human brain waves measured by an EEG.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/python.png" alt="python" />
+                            <img class="project-tech-item" src="assets/img/project/scikit.png" alt="scikit" />
+                            <img class="project-tech-item" src="assets/img/project/keras.png" alt="keras" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/arl-eegmodels" target="_blank">GitHub</a>
+                            <a class="project-button" href="https://willsmithte.com/thesis" target="_blank">Website</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/transcribe.png" alt="transcribe project" />
+                    <div class="project-summary">
+                        <h3>Transcribe</h3>
+                        <p>Transcription tool leveraging Google Cloud Platform's APIs to simplify manual transcription work, successfully used for real Upwork contracts.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/python.png" alt="python" />
+                            <img class="project-tech-item" src="assets/img/project/gcp-icon-new.png" alt="gcp" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/transcribe" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="assets/img/project/email-classifier.png" alt="email classifier project" />
+                    <div class="project-summary">
+                        <h3>AI Email Classifier</h3>
+                        <p>Email classification using machine learning algorithms to accurately categorise incoming emails based on their content.</p>
+                        <div class="project-tech">
+                            <img class="project-tech-item" src="assets/img/project/python.png" alt="python" />
+                            <img class="project-tech-item" src="assets/img/project/scikit.png" alt="scikit learn" />
+                        </div>
+                        <div class="project-buttons">
+                            <a class="project-button" href="https://github.com/WillSmithTE/AIEmailClassifier" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bottom-strip">
+        <p>Designed by <a href="https://www.linkedin.com/in/pipakramer/" target="_blank">Pip Kramer</a></p>
     </div>
-    <div class="project">
-        <a href="http://willsmithte.com/covid-vax" target="_blank">Covid Vax</a>
-        <span> - Go, React</span>
-    </div>
-    <div class="project">
-        <a href="http://willsmithte.com/snow" target="_blank">The Snow Tracker</a>
-        <span> - Python, React, DynamoDB, AWS Lambda, CloudWatch</span>
-    </div>
-        <!-- <div class="project">
-            <a href="http://willsmithte.com/NBA" target="_blank">NBA Ratings</a>
-            <span> - Python, React</span>
-        </div> -->
-    </div>
-    <div class="project">
-        <a href="http://willsmithte.com/rsvpyo" target="_blank">RSVP Yo</a>
-        <span> - Kotlin, Spring Boot, React</span>
-    </div>
-    <div class="project">
-        <a href="http://willsmithte.com/thesis" target="_blank">Thesis Project</a>
-        <span> - Tensorflow, Keras, Python</span>
-    </div>
-    <div class="project">
-        <a href="https://github.com/WillSmithTE/transcribe" target="_blank">Transcribe</a>
-        <span> - Python, Google Cloud</span>
-    </div>
-    <div class="project">
-        <a href="http://willsmithte.com/Not-That-Temp" target="_blank">Not That Temp</a>
-        <span> - Javascript, HTML, CSS</span>
-    </div>
-    <div class="project">
-        <a href="https://github.com/WillSmithTE/AIEmailClassifier" target="_blank">AI Email Classifier</a>
-        <span> - Python, Scikit</span>
-    </div>
-    <div class="project">
-        <a target="_blank"
-            href="https://chrome.google.com/webstore/detail/bye-bye-youtube/ejgbcgcahagfgghcoajookkaakhjboec/">
-            Bye Bye YouTube
-        </a>
-        <span> - Chrome extension, Javascript</span>
-    </div>
-    <div class="project">
-        <a target="_blank" href="https://github.com/WillSmithTE/BBCScraper">BBC Scraper</a>
-        <span> - Python, BeautifulSoup</span>
-    </div>
-    <div style="padding: 50px 0 0">
-        <a href="http://willsmithte.com/resume" target="_blank">
-            <button style="color: white; background-color: green;" class="btn">Resume</button>
-        </a>
-        <a href="https://github.com/WillSmithTE" target="_blank">
-            <button style="color: white; background-color: rgb(35,31,45);" class="btn">GitHub</button>
-        </a>
-        <a href="https://www.linkedin.com/in/willsmithte/" target="_blank">
-            <button style="color: white; background-color: rgb(2,116,179);" class="btn">LinkedIn</button>
-        </a>
-    </div>
-
-
+    
     <!-- Bootstrap core JS-->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <!-- Third party plugin JS-->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </body>
 
 </html>
